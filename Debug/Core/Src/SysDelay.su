@@ -1,0 +1,4 @@
+core_cm4.h:1809:22:__NVIC_SetPriority	16	static
+SysDelay.c:3:6:SysTick_Init	16	static
+SysDelay.c:32:6:SysTick_Handle	4	static
+SysDelay.c:36:6:Delay	16	static
