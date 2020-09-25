@@ -14,7 +14,7 @@ void stopfan(void){
 }
 void setFan(int speed){
 	if(speed > -1 && speed < 101){
-		setPWM(htim2,TIM_CHANNEL_2,200,speed*2);
+		setPWM(htim2,TIM_CHANNEL_2,200,speed*1.25 + 75);
 	}
 
 

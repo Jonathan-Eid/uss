@@ -22,7 +22,8 @@
 #include "UART.h"
 #include "us_sensor.h"
 #include "fan.h"
-#include<stdio.h>
+#include "pid.h"
+#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -113,13 +114,18 @@ int main(void)
       /* USER CODE BEGIN 3 */
 
   	 //HAL_Delay(2000);
-  	 setFan(39);
-
+  	  setFan(100);
+  	 int integral = 0;
+  	 int last_error = 0;
+  	 int derivative = 0;
   	 while(1){
   	  	 HCSR04_Read();
   	  	 HAL_Delay(100);
-  		 char str[12];
-  		 sprintf(str, "%d", getDistance());
+  	  	 uint16_t distance = getDistance();
+  	  	 int pwm = calcFan(distance, &integral, &derivative, &last_error);
+  	  	 setFan(pwm);
+  	  	 char str[12];
+  		 sprintf(str, "%d", pwm);
   		 USART_Write(USART2, (uint8_t*)str, 5);
   		 USART_Write(USART2, (uint8_t*)"\r\n", 2);
   	 }
