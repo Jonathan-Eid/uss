@@ -113,11 +113,17 @@ int main(void)
 
       /* USER CODE BEGIN 3 */
 
-  	 //HAL_Delay(2000);
-  	  setFan(100);
+  	 setFan(100);
+
   	 int integral = 0;
   	 int last_error = 0;
   	 int derivative = 0;
+
+  	 setPoint(80);
+  	 set_P(-0.87);
+  	 set_I(-0.006);
+  	 set_D(-1.3);
+
   	 while(1){
   	  	 HCSR04_Read();
   	  	 HAL_Delay(100);
@@ -125,8 +131,8 @@ int main(void)
   	  	 int pwm = calcFan(distance, &integral, &derivative, &last_error);
   	  	 setFan(pwm);
   	  	 char str[12];
-  		 sprintf(str, "%d", pwm);
-  		 USART_Write(USART2, (uint8_t*)str, 5);
+  		 sprintf(str, "%d", distance);
+  		 USART_Write(USART2, (uint8_t*)str, 4);
   		 USART_Write(USART2, (uint8_t*)"\r\n", 2);
   	 }
 
@@ -213,7 +219,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 79;
+  htim1.Init.Prescaler = 80;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 0xffff-1;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -258,7 +264,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 79;
+  htim2.Init.Prescaler = 80;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 200;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;

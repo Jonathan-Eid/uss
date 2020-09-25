@@ -1,1 +1,5 @@
-pid.c:12:5:calcFan	48	static
+pid.c:9:6:set_P	24	static
+pid.c:13:6:set_I	24	static
+pid.c:17:6:set_D	24	static
+pid.c:21:6:setPoint	16	static
+pid.c:25:5:calcFan	48	static

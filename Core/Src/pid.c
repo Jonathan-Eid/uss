@@ -1,13 +1,26 @@
 #include "pid.h"
 
-double Kp = -0.8;
+double Kp = 0;
 double Ki = 0;
 double Kd = 0;
-int point = 50;
-int control_variable = 0;
+int point = 0;
 
 
+void set_P(float p){
+	Kp = p;
+}
 
+void set_I(float i){
+	Ki = i;
+}
+
+void set_D(float d){
+	Kd = d;
+}
+
+void setPoint(int p){
+	point = p;
+}
 
 int calcFan(uint16_t distance, int* integral, int* derivative, int* last_error){
 

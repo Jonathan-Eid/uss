@@ -1,7 +1,4 @@
-"Core/Src/LED.o"
-"Core/Src/SysDelay.o"
 "Core/Src/UART.o"
-"Core/Src/commands.o"
 "Core/Src/fan.o"
 "Core/Src/main.o"
 "Core/Src/pid.o"

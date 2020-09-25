@@ -1,4 +1,3 @@
-#include "SysDelay.h"
 #include "us_sensor.h"
 
 I2C_HandleTypeDef hi2c1;
@@ -13,10 +12,8 @@ void delay (uint16_t time)
 uint32_t IC_Val1 = 0;
 uint32_t IC_Val2 = 0;
 uint32_t Difference = 0;
-volatile uint32_t history_idx = 0;
-static volatile uint8_t Is_First_Captured = 0;  // is the first value captured ?
+uint8_t Is_First_Captured = 0;  // is the first value captured ?
 static volatile  uint16_t Distance  = 0;
-static volatile  uint8_t distance_history[50];
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
@@ -46,8 +43,6 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 			}
 
 			Distance = Difference * .034/2;
-			distance_history[history_idx % 50] = Distance;
-			history_idx+=1;
 			Is_First_Captured = 0; // set it back to false
 
 			// set polarity to rising edge
