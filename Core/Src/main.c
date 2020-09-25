@@ -21,8 +21,8 @@
 #include "main.h"
 #include "UART.h"
 #include "us_sensor.h"
-#include "pwm.h"
-
+#include "fan.h"
+#include<stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -112,18 +112,19 @@ int main(void)
 
       /* USER CODE BEGIN 3 */
 
-  	 // int distance = HCSR04_Read();
-  	//  HAL_Delay(2000);
-  	 setPWM(htim2,TIM_CHANNEL_2,200,50);
+  	 //HAL_Delay(2000);
+  	 setFan(39);
 
   	 while(1){
-
+  	  	 HCSR04_Read();
+  	  	 HAL_Delay(100);
+  		 char str[12];
+  		 sprintf(str, "%d", getDistance());
+  		 USART_Write(USART2, (uint8_t*)str, 5);
+  		 USART_Write(USART2, (uint8_t*)"\r\n", 2);
   	 }
 
-	 // char str[12];
-	 // sprintf(str, "%d", distance);
-	 // USART_Write(USART2, (uint8_t*)str, 4);
-	 // USART_Write(USART2, (uint8_t*)"\r\n", 2);
+
 
 
   /* Infinite loop */
@@ -320,6 +321,7 @@ void Error_Handler(void)
 
   /* USER CODE END Error_Handler_Debug */
 }
+
 
 #ifdef  USE_FULL_ASSERT
 /**

@@ -94,6 +94,7 @@ void HAL_TIM_IC_MspInit(TIM_HandleTypeDef* htim_ic)
     /* Peripheral clock enable */
     __HAL_RCC_TIM1_CLK_ENABLE();
 
+    __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOE_CLK_ENABLE();
     /**TIM1 GPIO Configuration
     PE11     ------> TIM1_CH2
