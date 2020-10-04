@@ -1,3 +1,5 @@
 fan.c:7:6:startFan	96	static
-fan.c:11:6:stopfan	96	static
-fan.c:15:6:setFan	104	static
+fan.c:11:6:stopFan	96	static
+fan.c:16:6:fan20	96	static
+fan.c:20:6:fan80	96	static
+fan.c:24:6:setFan	104	static

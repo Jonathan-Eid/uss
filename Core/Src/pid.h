@@ -10,5 +10,6 @@ void set_P(float p);
 void set_I(float i);
 void set_D(float d);
 void setPoint(int p);
+void clearPID(void);
 
-int calcFan(uint16_t distance, int *integral, int *derivative, int *last_error);
+int calcFan(uint16_t distance);

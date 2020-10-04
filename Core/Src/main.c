@@ -23,6 +23,7 @@
 #include "us_sensor.h"
 #include "fan.h"
 #include "pid.h"
+#include "commands.h"
 #include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
@@ -102,7 +103,7 @@ int main(void)
 
   /* USER CODE END 2 */
   HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_2);
-
+  COMMAND_Init();
 
     /* USER CODE END 2 */
 
@@ -112,32 +113,6 @@ int main(void)
       /* USER CODE END WHILE */
 
       /* USER CODE BEGIN 3 */
-
-  	 setFan(100);
-
-  	 int integral = 0;
-  	 int last_error = 0;
-  	 int derivative = 0;
-
-  	 setPoint(80);
-  	 set_P(-0.87);
-  	 set_I(-0.006);
-  	 set_D(-1.3);
-
-  	 while(1){
-  	  	 HCSR04_Read();
-  	  	 HAL_Delay(100);
-  	  	 uint16_t distance = getDistance();
-  	  	 int pwm = calcFan(distance, &integral, &derivative, &last_error);
-  	  	 setFan(pwm);
-  	  	 char str[12];
-  		 sprintf(str, "%d", distance);
-  		 USART_Write(USART2, (uint8_t*)str, 4);
-  		 USART_Write(USART2, (uint8_t*)"\r\n", 2);
-  	 }
-
-
-
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */

@@ -8,10 +8,19 @@ void startFan(void){
 	setPWM(htim2,TIM_CHANNEL_2,200,200);
 }
 
-void stopfan(void){
+void stopFan(void){
 	setPWM(htim2,TIM_CHANNEL_2,200,0);
 
 }
+
+void fan20(void){
+	setPWM(htim2,TIM_CHANNEL_2,200,40);
+}
+
+void fan80(void){
+	setPWM(htim2,TIM_CHANNEL_2,200,160);
+}
+
 void setFan(int speed){
 	if(speed > -1 && speed < 101){
 		setPWM(htim2,TIM_CHANNEL_2,200,speed*1.25 + 75);
