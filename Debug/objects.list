@@ -1,6 +1,8 @@
+"Core/Src/LED.o"
 "Core/Src/UART.o"
 "Core/Src/commands.o"
 "Core/Src/fan.o"
+"Core/Src/led_state.o"
 "Core/Src/main.o"
 "Core/Src/pid.o"
 "Core/Src/pwm.o"

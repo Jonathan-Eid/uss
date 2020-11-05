@@ -15,3 +15,7 @@ void PID_60(void);
 void PID_50(void);
 void PID_5(void);
 void PID_80(void);
+void PID_75(void);
+void PID_84(void);
+void PID_90(void);
+void PID_94(void);

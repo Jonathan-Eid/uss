@@ -2,6 +2,7 @@
 #include "us_sensor.h"
 #include "fan.h"
 #include "pid.h"
+#include "led_state.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -26,9 +27,9 @@ void COMMAND_Init(void){
 	//Start command input loop
 	setFan(100);
 
- 	 set_P(-0.98);
- 	 set_I(-0.0125);
- 	 set_D(-1.1);
+ 	 set_P(-0.9);
+ 	 set_I(0.0025);
+ 	 set_D(-1);
  	 //set_P(-0.87);
  	 //set_I(-0.006);
  	 //set_D(-1.3);
@@ -44,6 +45,7 @@ void COMMAND_Init(void){
 	  	 HCSR04_Read();
 	  	 HAL_Delay(100);
 	  	 uint16_t distance = getDistance();
+	  	 setState(distance);
 
 		 if(PID_LOOP){
 
@@ -98,6 +100,18 @@ void Process_Input(uint8_t* buffer){
 	}else if(strcmp(command, "PID80") == 0){
 		PID_80();
 		USART_Write(USART2, (uint8_t*)"PID 80\r\n", 11);
+	}else if(strcmp(command, "PID75") == 0){
+		PID_75();
+		USART_Write(USART2, (uint8_t*)"PID 75\r\n", 11);
+	}else if(strcmp(command, "PID84") == 0){
+		PID_84();
+		USART_Write(USART2, (uint8_t*)"PID 84\r\n", 11);
+	}else if(strcmp(command, "PID90") == 0){
+		PID_90();
+		USART_Write(USART2, (uint8_t*)"PID 90\r\n", 11);
+	}else if(strcmp(command, "PID94") == 0){
+		PID_94();
+		USART_Write(USART2, (uint8_t*)"PID 94\r\n", 11);
 	}else{
 				USART_Write(USART2, (uint8_t*)invalid_msg,20);
 	}
@@ -168,6 +182,45 @@ void PID_80(void){
 	setPoint(80);
 	PID_LOOP=1;
 }
+
+void PID_75(void){
+	PID_LOOP=1;
+	clearPID();
+	setFan(100);
+ 	HAL_Delay(1000);
+	setPoint(75);
+	PID_LOOP=1;
+}
+
+void PID_84(void){
+	PID_LOOP=1;
+	clearPID();
+	setFan(100);
+ 	HAL_Delay(1000);
+	setPoint(84);
+	PID_LOOP=1;
+}
+
+void PID_90(void){
+	PID_LOOP=1;
+	clearPID();
+	setFan(100);
+ 	HAL_Delay(1000);
+	setPoint(90);
+	PID_LOOP=1;
+}
+
+void PID_94(void){
+	PID_LOOP=1;
+	clearPID();
+	setFan(100);
+ 	HAL_Delay(1000);
+	setPoint(94);
+	PID_LOOP=1;
+}
+
+
+
 void Read_Buffer(char* rxByte, uint8_t* buffer, int *bf_count){
 
 		//Set string used to write out new line

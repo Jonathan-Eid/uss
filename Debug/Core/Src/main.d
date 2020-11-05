@@ -30,7 +30,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Src/UART.h \
  ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h \
  ../Core/Src/us_sensor.h ../Core/Src/fan.h ../Core/Src/pwm.h \
- ../Core/Src/pid.h ../Core/Src/commands.h
+ ../Core/Src/pid.h ../Core/Src/commands.h ../Core/Src/LED.h
 
 ../Core/Inc/main.h:
 
@@ -103,3 +103,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Src/pid.h:
 
 ../Core/Src/commands.h:
+
+../Core/Src/LED.h:
